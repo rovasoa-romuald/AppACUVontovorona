@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+    nginx-proxy:
+        image: nginxproxy/nginx-proxy
+        ports:
+            - '3000:3000'
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+        environment:
+            - VIRTUAL_HOST=acut-vontovorona.org
+            - VIRTUAL_PORT=3000
+
+    acuvbest-front:
+        image: ${DOCKER_HUB_USERNAME}/acuvbest-front:${GITHUB_SHA}
+        environment:
+            - DEBUG=false
+            - NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
+        ports:
+            - '3000:3000'
+        depends_on:
+            - nginx-proxy
