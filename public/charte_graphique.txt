@@ -1,0 +1,5 @@
+Bleu foncé :  074c8f
+Jaune : f4ea55
+Rouge : df1839
+Bleu clair : 80bbe2
+Blanc : fcfffa
